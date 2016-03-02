@@ -1,0 +1,3 @@
+app_humans_homepage:
+    path:     /
+    defaults: { _controller: AppHumansBundle:Default:index }
