@@ -1,6 +1,6 @@
 app_humans:
     resource: "@AppHumansBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /humans
 
 app:
     resource: "@AppBundle/Controller/"

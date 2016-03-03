@@ -227,5 +227,40 @@ class associations
     {
         return $this->department;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getBeneficiaries()
+    {
+        return $this->beneficiaries;
+    }
+
+    /**
+     * @param mixed $beneficiaries
+     */
+    public function setBeneficiaries($beneficiaries)
+    {
+        $this->beneficiaries = $beneficiaries;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+
+
 }
 

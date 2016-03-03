@@ -18,7 +18,7 @@ class User
     protected $need;
     /**
      * @ORM\ManyToOne(targetEntity="AppHumansBundle\Entity\associations", inversedBy="associations", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
     */
     private $associations;
     /**
@@ -350,5 +350,39 @@ class User
     {
         return $this->city;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getNeed()
+    {
+        return $this->need;
+    }
+
+    /**
+     * @param mixed $need
+     */
+    public function setNeed($need)
+    {
+        $this->need = $need;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAssociations()
+    {
+        return $this->associations;
+    }
+
+    /**
+     * @param mixed $associations
+     */
+    public function setAssociations($associations)
+    {
+        $this->associations = $associations;
+    }
+
+
 }
 

@@ -198,5 +198,37 @@ class need
     {
         return $this->status;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->User;
+    }
+
+    /**
+     * @param mixed $User
+     */
+    public function setUser($User)
+    {
+        $this->User = $User;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBeneficiaries()
+    {
+        return $this->beneficiaries;
+    }
+
+    /**
+     * @param mixed $beneficiaries
+     */
+    public function setBeneficiaries($beneficiaries)
+    {
+        $this->beneficiaries = $beneficiaries;
+    }
 }
 

@@ -1,3 +1,17 @@
 app_humans_homepage:
     path:     /
-    defaults: { _controller: AppHumansBundle:Default:index }
+    defaults: { _controller: AppHumansBundle:Public:index }
+
+app_humans_sign_up:
+    path:     /sign_up
+    defaults: { _controller: AppHumansBundle:Public:signUp }
+
+app_humans_login:
+    path:     /login
+    defaults: { _controller: AppHumansBundle:Public:login }
+
+app_humans_profil:
+    path:     /profil/{id}
+    defaults: { _controller: AppHumansBundle:Public:profil }
+    requirements:
+        page: \d
