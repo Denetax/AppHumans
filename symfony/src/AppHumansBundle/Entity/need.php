@@ -13,11 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
 class need
 {
     /**
-     * @ORM\ManyToOne(targetEntity="AppHumansBundle\Entity\User", inversedBy="User", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", inversedBy="User", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
     */
     private $User;
-    
+
     /**
      * @ORM\ManyToOne(targetEntity="AppHumansBundle\Entity\beneficiaries", inversedBy="beneficiaries", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)

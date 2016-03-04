@@ -2,12 +2,126 @@
 <html>
 <head>
 	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<!--Import Google Icon Font-->
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+
+
 	<title>{% block title %}Welcome!{% endblock %}</title>
-	{% block stylesheets %}{% endblock %}
-	<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+	{% block javascripts %}
+	{% javascripts 'bundles/apphumans/js/*' %}
+	<script src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+	{% endblock %}
+
+	{% block stylesheets %}
+	{% stylesheets 'bundles/AppHumans/css/*' filter='cssrewrite' %}
+	<link rel="stylesheet" href="{{ asset_url }}" />
+	{% endstylesheets %}
+	{% endblock %}
 </head>
 <body>
-	{% block body %}{% endblock %}
-	{% block javascripts %}{% endblock %}
+
+
+	<header id="header" class="">
+		<div class="navbar">
+			<a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only"><i class="mdi-navigation-menu"></i></a>
+		</div>
+		<ul id="nav-mobile" class="side-nav fixed" style="width: 240px;">
+			<li class="bold"><a href="#step0" class="waves-effect waves-teal">Home </a></li>
+			<li class="bold"><a href="#step1" class="waves-effect waves-teal">Connexion</a></li>
+			<li class="bold"><a href="#step1" class="waves-effect waves-teal">Inscription</a></li>
+			<li class="bold"><a href="#step1" class="waves-effect waves-teal">Inscription association</a></li>
+			<li class="bold"><a href="#step1" class="waves-effect waves-teal">HomePage</a></li>
+			<li class="bold"><a href="#step1" class="waves-effect waves-teal">Créer fiche</a></li>
+			<li class="bold"><a href="#step1" class="waves-effect waves-teal">Alerter</a></li>
+		</ul>
+	</header><!-- /header -->
+
+	<div class="container">
+		{% block body %}{% endblock %}
+	</div>
+
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB76lPNTMM-3jnhq6pCSYRN8uBN_cPKSRw&signed_in=true&libraries=places&callback=initAutocomplete"
+	async defer></script>
+	<script>
+		$(document).ready(function(){
+			/* Menu nav */
+			$('.button-collapse').sideNav({
+				menuWidth: 230,
+				edge: 'left',
+				closeOnClick: false
+			});
+
+			$("#getLocalisation").click(function(event) {
+				event.preventDefault();
+				event.stopPropagation();
+				navigator.geolocation.getCurrentPosition( getPosition );
+			})
+		});
+
+
+		/* récupération de la position */
+		function getPosition(position) {
+			var infopos = "Position déterminée :\n";
+			infopos += "Latitude : "+position.coords.latitude +"\n";
+			infopos += "Longitude: "+position.coords.longitude+"\n";
+			infopos += "Altitude : "+position.coords.altitude +"\n";
+			$.ajax({
+				url:'https://maps.googleapis.com/maps/api/geocode/json?latlng='+ position.coords.latitude+ ','+ position.coords.longitude,
+				type : 'GET',
+				dataType: 'json',
+				success: function(item) {
+
+					var arrAddress = item.results[0].address_components;
+					console.log(arrAddress);
+					$.each(arrAddress, function (i, address_component) {
+						if (address_component.types[0] == "locality") {
+							console.log(address_component.long_name);
+							$("#autocomplete").val(address_component.long_name);
+							$("#autocomplete").text(address_component.long_name);
+							$("#autocomplete").focus();
+							return false;
+						}
+					});
+				}
+
+			});
+
+			console.log(infopos);
+		}
+
+		if(!navigator.geolocation) {
+			$("#getLocalisation").hide();
+		}
+		else
+			console.log("Impossible de récupérer la position.");
+
+		/* auto complete ville google */
+		var placeSearch, autocomplete;
+		var componentForm = {
+			locality: 'long_name',
+			postal_code: 'short_name'
+		};
+
+		function initAutocomplete() {
+			autocomplete = new google.maps.places.Autocomplete(
+				(document.getElementById('autocomplete')),
+				{types: ['geocode']});
+			autocomplete.addListener('place_changed', fillInAddress);
+		}
+
+		function fillInAddress() {
+			var place = autocomplete.getPlace();
+			console.log(place);
+		}
+
+	</script>
+
 </body>
 </html>

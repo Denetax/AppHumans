@@ -1,7 +1,14 @@
+user:
+    resource: "@UserBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+
+
+homepage:
+    path:  /
+    defaults: { _controller: AppHumansBundle:Public:login }
+
 app_humans:
     resource: "@AppHumansBundle/Resources/config/routing.yml"
     prefix:   /humans
-
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation

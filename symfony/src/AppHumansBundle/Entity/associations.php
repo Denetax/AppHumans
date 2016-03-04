@@ -19,9 +19,10 @@ class associations
     private $beneficiaries;
 
     /**
-    * @ORM\OneToMany(targetEntity="AppHumansBundle\Entity\User", mappedBy="User")
+    * @ORM\OneToMany(targetEntity="UserBundle\Entity\User", mappedBy="User")
     */
     protected $user;
+
     /**
      * @var int
      *
