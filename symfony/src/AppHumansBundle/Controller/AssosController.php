@@ -12,7 +12,7 @@ class AssosController extends Controller
         $associations = $em->getRepository('AppHumansBundle:associations')->findAll();
         return $this->render('AppHumansBundle:Assos:index.html.twig', array(
             'associations' => $associations
-        ));
+            ));
     }
 
     public function getAssosAction($id)
@@ -21,7 +21,7 @@ class AssosController extends Controller
         $associations = $em->getRepository('AppHumansBundle:associations')->find($id);
         return $this->render('AppHumansBundle:Assos:singleAssos.html.twig', array(
             'associations' => $associations
-        ));
+            ));
     }
 
     public function joinAssosAction($id_user, $id_assos, $role)
@@ -37,7 +37,7 @@ class AssosController extends Controller
 
             return $this->redirect($this->generateUrl('app_humans_profil', array(
                 'id' => $id_user
-            )));
+                )));
         }
         else
         {
@@ -49,7 +49,7 @@ class AssosController extends Controller
 
             return $this->redirect($this->generateUrl('app_humans_profil_beneficiaries', array(
                 'id' => $id_user
-            )));
+                )));
         }
     }
 }

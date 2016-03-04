@@ -1,5 +1,20 @@
-<form action="{{ path('app_humans_login_beneficiaries') }}" METHOD="post">
-    <input type="email" name="email"><br>
-    <input type="password" name="password"><br>
-    <input type="submit" value="sign in">
-</form>
+{% extends "::base.html.twig" %}
+{% block body %}
+
+<br>
+<br>
+<br>
+<div class="row">
+	<div class="col s6 offset-s4">
+		<form action="" METHOD="post">
+
+			<input type="email" name="email"><br>
+			<input type="password" name="password"><br>
+			<input type="submit" class="waves-effect waves-light btn" value="sign in">
+		</form>
+
+	</div>
+</div>
+
+
+{% endblock %}
