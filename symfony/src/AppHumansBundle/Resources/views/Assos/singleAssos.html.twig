@@ -1,0 +1,20 @@
+<h1>{{ associations.name }}</h1>
+
+<h2>Information Associations</h2>
+Adresse : {{ associations.adress }}<br>
+Email : {{ associations.email }}<br>
+Tel : {{ associations.phone }}<br>
+
+<h2>Liste des Membres :</h2>
+
+{% for elment in associations.user %}
+    - <a href="{{ path('app_humans_profil', {'id': elment.id}) }}">{{ elment.name }} {{ elment.lastname }}</a><br>
+{% endfor %}
+
+<h2>Liste des Bénéficiaires :</h2>
+{% for elment in associations.beneficiaries %}
+    - <a href="{{ path('app_humans_profil_beneficiaries', {'id': elment.id}) }}">{{ elment.name }}</a><br>
+{% endfor %}
+
+<br>
+<a href="{{ path('app_humans_join_assos', {'id_user': app.session.get('id'), 'id_assos': associations.id, 'role': app.session.get('role')}) }}">Rejoindre</a>

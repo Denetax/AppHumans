@@ -13,13 +13,13 @@ use Doctrine\ORM\Mapping as ORM;
 class associations
 {
     /**
-     * @ORM\ManyToMany(targetEntity="AppHumansBundle\Entity\beneficiaries", inversedBy="beneficiaries", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="AppHumansBundle\Entity\beneficiaries", inversedBy="associations", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
     */
     private $beneficiaries;
 
     /**
-    * @ORM\OneToMany(targetEntity="AppHumansBundle\Entity\User", mappedBy="User")
+    * @ORM\OneToMany(targetEntity="AppHumansBundle\Entity\User", mappedBy="associations")
     */
     protected $user;
     /**
@@ -226,6 +226,14 @@ class associations
     public function getDepartment()
     {
         return $this->department;
+    }
+
+    /**
+     * @param mixed $beneficiaries
+     */
+    public function addBeneficiaries($beneficiaries)
+    {
+        $this->beneficiaries[] = $beneficiaries;
     }
 
     /**

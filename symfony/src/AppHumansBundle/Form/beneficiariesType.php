@@ -3,13 +3,12 @@
 namespace AppHumansBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class UserType extends AbstractType
+class beneficiariesType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -19,15 +18,11 @@ class UserType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
-            ->add('lastname', TextType::class)
-            ->add('email', TextType::class)
-            ->add('password', PasswordType::class)
             ->add('sexe', TextType::class)
-            ->add('yearBorn')
+            ->add('commentary', TextareaType::class)
             ->add('phone', TextType::class)
-            ->add('adress', TextType::class)
-            ->add('cp', TextType::class)
-            ->add('city', TextType::class)
+            ->add('lieuVie', TextType::class)
+            ->add('typeHabitat', TextType::class)
         ;
     }
     
@@ -37,7 +32,7 @@ class UserType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppHumansBundle\Entity\User'
+            'data_class' => 'AppHumansBundle\Entity\beneficiaries'
         ));
     }
 }

@@ -1,0 +1,9 @@
+<h1>list des Associations :</h1>
+
+{% for association in associations %}
+    Nom : {{ association.name }}<br>
+    Adresse : {{ association.adress }}<br>
+    Email : {{ association.email }}<br>
+    Tel : {{ association.phone }}<br>
+    <a href="{{ path('app_humans_get_assos', {'id': association.id}) }}">Voir</a> | <a href="{{ path('app_humans_join_assos', {'id_user': app.session.get('id'), 'id_assos': association.id, 'role': app.session.get('role')}) }}">Rejoindre</a> <br><br>
+{% endfor %}

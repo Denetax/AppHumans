@@ -1,9 +1,22 @@
-{{ name }}<br>
-{{ lastname }}<br>
-{{ email }}<br>
-{{ phone }}<br>
-{{ sexe }}<br>
-{{ yearborn|date('y/m/d') }}<br>
-{{ adress }}<br>
-{{ cp }}<br>
-{{ city }}
+<h1>Bonjour {{ user.lastname }} {{ user.name }},</h1>
+
+<h2>Information Utilisateur :</h2>
+
+Email : {{ user.email }}<br>
+Tel : {{ user.phone }}<br>
+Genre : {{ user.sexe }}<br>
+Année de naissance : {{ user.yearborn|date('y/m/d') }}<br>
+Adresse : {{ user.adress }}<br>
+Code Postal : {{ user.cp }}<br>
+Ville : {{ user.city }}<br>
+
+<h2>Associations affilié :</h2>
+{% if user.associations is not null %}
+Nom : {{ user.associations.name }}<br>
+Adress : {{ user.associations.adress }}<br>
+Tel : {{ user.associations.phone }}<br>
+Email : {{ user.associations.email }}<br>
+Departement : {{ user.associations.department }}
+{% else %}
+    Aucune association
+{% endif %}

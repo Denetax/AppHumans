@@ -1,6 +1,6 @@
 app_humans_homepage:
     path:     /
-    defaults: { _controller: AppHumansBundle:Public:index }
+    defaults: { _controller: AppHumansBundle:Default:index }
 
 app_humans_sign_up:
     path:     /sign_up
@@ -15,3 +15,40 @@ app_humans_profil:
     defaults: { _controller: AppHumansBundle:Public:profil }
     requirements:
         page: \d
+
+app_humans_list_assos:
+    path:     /assos
+    defaults: { _controller: AppHumansBundle:Assos:index }
+
+app_humans_get_assos:
+    path:     /assos/{id}
+    defaults: { _controller: AppHumansBundle:Assos:getAssos }
+
+app_humans_join_assos:
+    path:     /join_assos/{id_user}/{id_assos}/{role}
+    defaults: { _controller: AppHumansBundle:Assos:joinAssos }
+    requirements:
+        page: \d
+
+app_humans_list_need:
+    path:     /need
+    defaults: { _controller: AppHumansBundle:Need:index }
+
+app_humans_sign_up_beneficiaries:
+    path:     /sign_up_b
+    defaults: { _controller: AppHumansBundle:Beneficiaries:signUp }
+
+app_humans_login_beneficiaries:
+    path:     /login_b
+    defaults: { _controller: AppHumansBundle:Beneficiaries:login }
+
+app_humans_profil_beneficiaries:
+    path:     /profil_b/{id}
+    defaults: { _controller: AppHumansBundle:Beneficiaries:profil }
+    requirements:
+        page: \d
+
+easy_admin_bundle:
+    resource: "@EasyAdminBundle/Controller/"
+    type:     annotation
+    prefix:   /admin

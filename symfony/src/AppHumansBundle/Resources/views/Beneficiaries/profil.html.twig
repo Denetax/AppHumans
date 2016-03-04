@@ -1,0 +1,22 @@
+<h1>Bonjour {{ user.name }},</h1>
+
+<h2>Information Utilisateur :</h2>
+
+Tel : {{ user.phone }}<br>
+Genre : {{ user.sexe }}<br>
+Type d'habitat : {{ user.typeHabitat }}<br>
+Lieu de vie : {{ user.lieuVie }}
+
+
+<h2>Associations affilié :</h2>
+{% if user.associations is defined %}
+{% for element in user.associations %}
+Nom : {{ element.name }}<br>
+Adress : {{ element.adress }}<br>
+Tel : {{ element.phone }}<br>
+Email : {{ element.email }}<br>
+Departement : {{ element.department }}
+{% endfor %}
+{% else %}
+    Aucunes associations
+{% endif %}

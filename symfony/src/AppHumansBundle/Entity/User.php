@@ -13,11 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
 class User
 {
     /**
-    * @ORM\OneToMany(targetEntity="AppHumansBundle\Entity\need", mappedBy="need")
+    * @ORM\OneToMany(targetEntity="AppHumansBundle\Entity\need", mappedBy="User")
     */
     protected $need;
     /**
-     * @ORM\ManyToOne(targetEntity="AppHumansBundle\Entity\associations", inversedBy="associations", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="AppHumansBundle\Entity\associations", inversedBy="user", cascade={"persist"})
      * @ORM\JoinColumn(nullable=true)
     */
     private $associations;
@@ -99,6 +99,13 @@ class User
      * @ORM\Column(name="city", type="string", length=255)
      */
     private $city;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="role", type="string", length=255, nullable=true)
+     */
+    private $role;
 
 
     /**
@@ -381,6 +388,22 @@ class User
     public function setAssociations($associations)
     {
         $this->associations = $associations;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * @param string $role
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
     }
 
 

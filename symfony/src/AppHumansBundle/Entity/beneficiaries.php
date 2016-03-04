@@ -13,12 +13,12 @@ use Doctrine\ORM\Mapping as ORM;
 class beneficiaries
 {
     /**
-    * @ORM\ManyToMany(targetEntity="AppHumansBundle\Entity\need", mappedBy="assiociations")
+    * @ORM\ManyToMany(targetEntity="AppHumansBundle\Entity\associations", mappedBy="beneficiaries")
     */
-    protected $assiociations;
+    protected $associations;
     
     /**
-    * @ORM\OneToMany(targetEntity="AppHumansBundle\Entity\need", mappedBy="need")
+    * @ORM\OneToMany(targetEntity="AppHumansBundle\Entity\need", mappedBy="beneficiaries")
     */
     protected $need;
 
@@ -41,6 +41,13 @@ class beneficiaries
     /**
      * @var string
      *
+     * @ORM\Column(name="password", type="string", length=255)
+     */
+    private $password;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="sexe", type="string", length=255)
      */
     private $sexe;
@@ -48,7 +55,7 @@ class beneficiaries
     /**
      * @var string
      *
-     * @ORM\Column(name="commentary", type="string", length=255)
+     * @ORM\Column(name="commentary", type="text")
      */
     private $commentary;
 
@@ -72,6 +79,13 @@ class beneficiaries
      * @ORM\Column(name="type_habitat", type="string", length=255)
      */
     private $typeHabitat;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="role", type="string", length=255, nullable=true)
+     */
+    private $role;
 
 
     /**
@@ -227,5 +241,78 @@ class beneficiaries
     {
         return $this->typeHabitat;
     }
+
+    /**
+     * @param mixed $associations
+     */
+    public function addAssociations($associations)
+    {
+        $this->associations[] = $associations;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAssociations()
+    {
+        return $this->associations;
+    }
+
+    /**
+     * @param mixed $associations
+     */
+    public function setAssociations($associations)
+    {
+        $this->associations = $associations;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNeed()
+    {
+        return $this->need;
+    }
+
+    /**
+     * @param mixed $need
+     */
+    public function setNeed($need)
+    {
+        $this->need = $need;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * @param string $role
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * @param string $password
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+
 }
 

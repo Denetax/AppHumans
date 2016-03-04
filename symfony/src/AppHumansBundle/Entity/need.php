@@ -13,14 +13,14 @@ use Doctrine\ORM\Mapping as ORM;
 class need
 {
     /**
-     * @ORM\ManyToOne(targetEntity="AppHumansBundle\Entity\User", inversedBy="User", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="AppHumansBundle\Entity\User", inversedBy="need", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=true)
     */
     private $User;
     
     /**
-     * @ORM\ManyToOne(targetEntity="AppHumansBundle\Entity\beneficiaries", inversedBy="beneficiaries", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="AppHumansBundle\Entity\beneficiaries", inversedBy="need", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=true)
     */
     private $beneficiaries;
 
@@ -43,14 +43,14 @@ class need
     /**
      * @var string
      *
-     * @ORM\Column(name="creation_date", type="string", length=255)
+     * @ORM\Column(name="creation_date", type="date")
      */
     private $creationDate;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="response_date", type="string", length=255)
+     * @ORM\Column(name="response_date", type="date")
      */
     private $responseDate;
 
