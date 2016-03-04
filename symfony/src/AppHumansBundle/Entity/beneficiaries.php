@@ -12,7 +12,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class beneficiaries
 {
-
+    /**
+    * @ORM\ManyToMany(targetEntity="AppHumansBundle\Entity\associations", mappedBy="beneficiaries")
+    */
+    protected $associations;
+    
     /**
     * @ORM\OneToMany(targetEntity="AppHumansBundle\Entity\need", mappedBy="beneficiaries")
     */
@@ -83,10 +87,6 @@ class beneficiaries
      */
     private $role;
 
-    /**
-    * @ORM\ManyToMany(targetEntity="AppHumansBundle\Entity\associations", mappedBy="beneficiaries")
-    */
-    protected $associations;
 
     /**
      * Get id

@@ -1,3 +1,19 @@
+{% extends "AppHumansBundle::layout.html.twig" %}
+{% block css %}
+    <link type="text/css" rel="stylesheet" href="../../../bootstrap.css">
+    <link type="text/css" rel="stylesheet" href="../../../bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="../../../styles.css">
+    <link type="text/css" rel="stylesheet" href="../../../scrolling-nav.css">
+    <script type="application/javascript" src="../../../jquery.js"></script>
+    <script type="application/javascript" src="../../../bootstrap.js"></script>
+    <script type="application/javascript" src="../../../scrolling-nav.js"></script>
+{% endblock %}
+{% block nav %}{{ parent() }}{% endblock %}
+{% block body %}
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-lg-8">
+        <div id="form-login">
 <h1>{{ associations.name }}</h1>
 
 <h2>Information Associations</h2>
@@ -18,3 +34,8 @@ Tel : {{ associations.phone }}<br>
 
 <br>
 <a href="{{ path('app_humans_join_assos', {'id_user': app.session.get('id'), 'id_assos': associations.id, 'role': app.session.get('role')}) }}">Rejoindre</a>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+{% endblock %}

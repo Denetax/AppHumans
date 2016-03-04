@@ -10,6 +10,10 @@ app_humans_login:
     path:     /login
     defaults: { _controller: AppHumansBundle:Public:login }
 
+app_humans_logout:
+    path:     /logout
+    defaults: { _controller: AppHumansBundle:Public:logout }
+
 app_humans_profil:
     path:     /profil/{id}
     defaults: { _controller: AppHumansBundle:Public:profil }
@@ -41,6 +45,10 @@ app_humans_sign_up_beneficiaries:
 app_humans_login_beneficiaries:
     path:     /login_b
     defaults: { _controller: AppHumansBundle:Beneficiaries:login }
+
+app_humans_recherche:
+    path:     /recherche
+    defaults: { _controller: AppHumansBundle:Assos:recherche }
 
 app_humans_profil_beneficiaries:
     path:     /profil_b/{id}

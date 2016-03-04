@@ -3,6 +3,7 @@
 namespace AppHumansBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -18,6 +19,7 @@ class beneficiariesType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
+            ->add('password', PasswordType::class)
             ->add('sexe', TextType::class)
             ->add('commentary', TextareaType::class)
             ->add('phone', TextType::class)

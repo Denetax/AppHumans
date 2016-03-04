@@ -3,6 +3,7 @@
 namespace AppHumansBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class AssosController extends Controller
 {
@@ -12,7 +13,7 @@ class AssosController extends Controller
         $associations = $em->getRepository('AppHumansBundle:associations')->findAll();
         return $this->render('AppHumansBundle:Assos:index.html.twig', array(
             'associations' => $associations
-            ));
+        ));
     }
 
     public function getAssosAction($id)
@@ -21,7 +22,7 @@ class AssosController extends Controller
         $associations = $em->getRepository('AppHumansBundle:associations')->find($id);
         return $this->render('AppHumansBundle:Assos:singleAssos.html.twig', array(
             'associations' => $associations
-            ));
+        ));
     }
 
     public function joinAssosAction($id_user, $id_assos, $role)
@@ -37,7 +38,7 @@ class AssosController extends Controller
 
             return $this->redirect($this->generateUrl('app_humans_profil', array(
                 'id' => $id_user
-                )));
+            )));
         }
         else
         {
@@ -49,7 +50,31 @@ class AssosController extends Controller
 
             return $this->redirect($this->generateUrl('app_humans_profil_beneficiaries', array(
                 'id' => $id_user
-                )));
+            )));
+        }
+    }
+
+    public function rechercheAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+
+        if($request->getMethod() == 'POST')
+        {
+            $search = $request->get('search');
+            if($search)
+            {
+                $a = $em->createQueryBuilder()
+                    ->select('a')
+                    ->from('AppHumansBundle:associations', 'a')
+                    ->where('a.name LIKE :search')
+                    ->setParameters(array('search' => '%'.$search.'%'))
+                    ->getQuery()
+                    ->getResult();
+
+                return $this->render('AppHumansBundle:Assos:search.html.twig', array(
+                    'associations' => $a
+                ));
+            }
         }
     }
 }
